@@ -43,8 +43,12 @@
   }
 }
 h1{
-  font-family: 'Sixtyfour', sans-serif;
+
+}
+p2{
+  font-family: 'Faster One', system-ui;  
   color:  rgb(255, 0, 144);
+  font-size: 100px;
   -webkit-text-stroke-width: 0.5px;
   -webkit-text-stroke-color: black;
 }
