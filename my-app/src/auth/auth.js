@@ -2,29 +2,28 @@
 // This is where the user will be cretated and that itself will be a seperate collection. 
 //we will use one tap sign in, so no pages. 
 
-import "./Auth.css";
-import { Alert } from '@mui/material';
-import { auth, provider } from "../../firebase";
-import {  onAuthStateChanged,signInWithEmailAndPassword,createUserWithEmailAndPassword, signInWithPopup,sendEmailVerification} from "firebase/auth";
-import Cookies from "universal-cookie";
+import "./auth.css";
 import { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { getAuth } from "firebase/auth";
-const cookies = new Cookies();
 import React from 'react'
-import { useState } from 'react';
-import {signInWithPopup } from 'firebase'
-const Auth =()=>{
+import "./auth.css"
+export const Auth =()=>{
 
 const [userData, setUserData] = useState();
+const [userName, setUserName] = useState();
+const[userId, setUserId] = useState();
+const [userEmail, setUserEmail] = useState();
+const [createdAt, setCreatedAt]= useState();
+const [alertbutton,setalertbutton]=useState(false);
 
 
 
 
+return (
 
 
+    <h1> Auth Page </h1>
+)
 
 
 }
 
-return Auth; 
