@@ -6,13 +6,13 @@ import { AboutPage } from './tests';
 function App() {
   return (
     <div className="App">
-      <h1>bob</h1>
-      <h1></h1>
-      <AboutPage/>
+       <h1>bob</h1>
+      <h1>among</h1>
+      <AboutPage/> 
 
 
 
-      
+     
     </div>
   );
 }
