@@ -42,15 +42,19 @@
     transform: rotate(360deg);
   }
 }
-.h1{
+h1{
   font-family: 'Sixtyfour', sans-serif;
-  color: red;
+  color:  rgb(255, 0, 144);
+  -webkit-text-stroke-width: 0.5px;
+  -webkit-text-stroke-color: black;
 }
-* {
+/* * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: 'Sixtyfour', sans-serif !important;
-  color: red;
+  color: rgb(255, 0, 144);
+  -webkit-text-stroke-width: 0.5px;
+  -webkit-text-stroke-color: black;
 
-}
+} */

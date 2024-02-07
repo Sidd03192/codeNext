@@ -1,9 +1,10 @@
 import React from 'react'
 
-function landingPage() {
+export const LandingPage=()=> {
   return (
-    <div>landingPage</div>
+    <>
+    <h1>hello</h1>
+    </>
   )
 }
 
-export default landingPage
