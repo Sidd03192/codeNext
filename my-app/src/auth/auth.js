@@ -2,10 +2,15 @@
 // This is where the user will be cretated and that itself will be a seperate collection. 
 //we will use one tap sign in, so no pages. 
 
-import "./auth.css";
+import "./Auth.css";
+import { Alert } from '@mui/material';
+import { auth, provider } from "../../firebase";
+import {  onAuthStateChanged,signInWithEmailAndPassword,createUserWithEmailAndPassword, signInWithPopup,sendEmailVerification} from "firebase/auth";
+import Cookies from "universal-cookie";
 import { useState, useEffect } from "react";
-import {Input} from "@nextui-org/react";
-import {MailIcon} from './components/MailIcon';
+import { Link, useNavigate } from "react-router-dom";
+import { getAuth } from "firebase/auth";
+const cookies = new Cookies();
 import React from 'react'
 import {EyeFilledIcon} from "./components/EyeFilledIcon";
 import {EyeSlashFilledIcon} from "./components/EyeSlashFilledIcon";
@@ -219,12 +224,6 @@ return (
 
 
 
-</div>
-    </div>
-      </div>
-
-)
-
-
 }
 
+return Auth; 
