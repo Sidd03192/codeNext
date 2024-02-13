@@ -13,6 +13,7 @@ import { getAuth } from "firebase/auth";
 const cookies = new Cookies();
 import React from 'react'
 <<<<<<< HEAD
+<<<<<<< HEAD
 import {EyeFilledIcon} from "./components/EyeFilledIcon";
 import {EyeSlashFilledIcon} from "./components/EyeSlashFilledIcon";
 
@@ -61,19 +62,18 @@ const validateEmail = (Email) => Email.match(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+.[A-Z]{
 
     return validateEmail(Email) ? false : true;
   }, [Email]);
+=======
+import { useState } from 'react';
+import {signInWithPopup } from 'firebase'
+const Auth =()=>{
+
+const [userData, setUserData] = useState();
+>>>>>>> parent of f8bce09 (Merge branch 'main' of https://github.com/Sidd03192/codeNext)
 
 
 
-useEffect(() => {
-  const unsubscribe = onAuthStateChanged(auth, (authUser) => {
-    setUser(authUser);
-    
-    if ( user!=null)
-    {
-      cookies.set("auth-token", user.refreshToken); //navigate("./dash");
-    }
-  });
 
+<<<<<<< HEAD
   return () => unsubscribe();
 }, []);
 
@@ -232,6 +232,8 @@ return (
           )}
 =======
 >>>>>>> parent of 5dee955 (Merge branch 'main' of https://github.com/Sidd03192/codeNext)
+=======
+>>>>>>> parent of f8bce09 (Merge branch 'main' of https://github.com/Sidd03192/codeNext)
 
 
 
