@@ -10,22 +10,28 @@ import React from 'react'
 import {EyeFilledIcon} from "./components/EyeFilledIcon";
 import {EyeSlashFilledIcon} from "./components/EyeSlashFilledIcon";
 
-export const Auth =()=>{
+import {  onAuthStateChanged,signInWithEmailAndPassword,createUserWithEmailAndPassword, signInWithPopup,sendEmailVerification} from "firebase/auth";
+import { auth, provider } from "../firebase/firebase";
+import Cookies from "universal-cookie";
+import { getAuth } from "firebase/auth";
 
+
+export const Auth =()=>{
+  const cookies = new Cookies();
 const [userData, setUserData] = useState();
-const [userName, setUserName] = useState();
-const[userId, setUserId] = useState();
-const [userEmail, setUserEmail] = useState();
+const [userName, setUserName] = useState("");
+const[userId, setUserId] = useState("");
+const [userEmail, setUserEmail] = useState("");
 const [createdAt, setCreatedAt]= useState();
 const [alertbutton,setalertbutton]=useState(false);
 const [isVisible, setIsVisible] = React.useState(false);
 const[showLogin, setshowLogin] = React.useState(false);
-const toggleVisibility = () => setIsVisible(!isVisible);
 const [Email, setEmail]= useState("");
 const[Password, setPassword]=useState("");
 const isLoginEnabled = Email !== "" && Password !== "";
-
-
+const auth = getAuth();
+const [user, setUser] = useState(auth.currentUser);
+const toggleVisibility = () => setIsVisible(!isVisible);
 const handleEmailChange = (event) => {
   setEmail(event.target.value);
 };
@@ -34,6 +40,69 @@ const handlePasswordChange = (event) => {
   setPassword(event.target.value);
 };
 
+const validateEmail = (Email) => Email.match(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+.[A-Z]{2,4}$/i);
+
+  const isInvalid = React.useMemo(() => {
+    if (Email === "") return false;
+
+    return validateEmail(Email) ? false : true;
+  }, [Email]);
+
+
+
+useEffect(() => {
+  const unsubscribe = onAuthStateChanged(auth, (authUser) => {
+    setUser(authUser);
+    
+    if ( user!=null)
+    {
+      cookies.set("auth-token", user.refreshToken); //navigate("./dash");
+    }
+  });
+
+  return () => unsubscribe();
+}, []);
+
+const signInWithGoogle = async () => {
+  try {
+    console.log("Attempting Google Sign-In...");
+    const result = await signInWithPopup(auth, provider);
+    console.log("Google Sign-In Result:", result);
+    cookies.set("auth-token", result.user.refreshToken);
+
+    setUser(auth.currentUser);
+    window.location.reload();
+  } catch (err) {
+    console.error("Google Sign-In Error:", err.message);
+  }
+};
+
+
+const handleSignIn = async (event) => {
+  event.preventDefault();
+  validateEmail(Email)
+  if (Email && Password) {
+    try {
+      const result = await signInWithEmailAndPassword(auth, Email, Password);
+      console.log("Email/Password Sign-In Result:", result);
+
+      // Check if the user's email is verified
+      if (result.user.emailVerified) {
+        cookies.set("auth-token", result.user.refreshToken);
+        //props.setIsAuth(true);
+      } else {
+        console.log("Email is not verified. Sending verification email...");
+        await sendEmailVerification(result.user);
+        //setError(true); // Set an error state or show a message to inform the user
+      }
+    } catch (err) {
+      console.error("Email/Password Sign-In Error:", err.message);
+    }
+  } else {
+    console.log("Sign in with email and password error");
+    //setError(true);
+  }
+};
 
 
 
@@ -50,7 +119,8 @@ return (
               <MailIcon className="text-2xl text-default-400 pointer-events-none flex-shrink-0" />
             }
             onChange={handleEmailChange}
-
+            color={isInvalid ? "danger" : ""}
+      errorMessage={isInvalid && "Please enter a valid email"}
       />
       <Input
         label="Password"
@@ -131,7 +201,9 @@ return (
 
       {isLoginEnabled && (
             <div className="buttonz">
-              <button className="space" type="button">
+              <button 
+              onClick={handleSignIn}
+              className="space" type="button">
                 <strong>LOGIN</strong>
                 <div id="container-stars">
                   <div id="stars"></div>
