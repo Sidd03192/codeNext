@@ -2,15 +2,10 @@
 // This is where the user will be cretated and that itself will be a seperate collection. 
 //we will use one tap sign in, so no pages. 
 
-import "./Auth.css";
-import { Alert } from '@mui/material';
-import { auth, provider } from "../../firebase";
-import {  onAuthStateChanged,signInWithEmailAndPassword,createUserWithEmailAndPassword, signInWithPopup,sendEmailVerification} from "firebase/auth";
-import Cookies from "universal-cookie";
+import "./auth.css";
 import { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { getAuth } from "firebase/auth";
-const cookies = new Cookies();
+import {Input} from "@nextui-org/react";
+import {MailIcon} from './components/MailIcon';
 import React from 'react'
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -57,18 +52,19 @@ const validateEmail = (Email) => Email.match(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+.[A-Z]{
 
     return validateEmail(Email) ? false : true;
   }, [Email]);
-=======
-import { useState } from 'react';
-import {signInWithPopup } from 'firebase'
-const Auth =()=>{
-
-const [userData, setUserData] = useState();
->>>>>>> parent of f8bce09 (Merge branch 'main' of https://github.com/Sidd03192/codeNext)
 
 
 
+useEffect(() => {
+  const unsubscribe = onAuthStateChanged(auth, (authUser) => {
+    setUser(authUser);
+    
+    if ( user!=null)
+    {
+      cookies.set("auth-token", user.refreshToken); //navigate("./dash");
+    }
+  });
 
-<<<<<<< HEAD
   return () => unsubscribe();
 }, []);
 
@@ -238,3 +234,16 @@ return (
 }
 
 return Auth; 
+
+
+
+
+</div>
+    </div>
+      </div>
+
+)
+
+
+}
+
