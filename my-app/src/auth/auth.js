@@ -14,6 +14,9 @@ const cookies = new Cookies();
 import React from 'react'
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> parent of 27c198b (Update auth.js)
 import {EyeFilledIcon} from "./components/EyeFilledIcon";
 import {EyeSlashFilledIcon} from "./components/EyeSlashFilledIcon";
 
@@ -21,17 +24,11 @@ import {  onAuthStateChanged,signInWithEmailAndPassword,createUserWithEmailAndPa
 import { auth, provider } from "../firebase/firebase";
 import Cookies from "universal-cookie";
 import { getAuth } from "firebase/auth";
-=======
-import { useState } from 'react';
-import {signInWithPopup } from 'firebase'
-const Auth =()=>{
->>>>>>> parent of 5dee955 (Merge branch 'main' of https://github.com/Sidd03192/codeNext)
 
 
 export const Auth =()=>{
   const cookies = new Cookies();
 const [userData, setUserData] = useState();
-<<<<<<< HEAD
 const [userName, setUserName] = useState("");
 const[userId, setUserId] = useState("");
 const [userEmail, setUserEmail] = useState("");
@@ -52,8 +49,6 @@ const handleEmailChange = (event) => {
 const handlePasswordChange = (event) => {
   setPassword(event.target.value);
 };
-=======
->>>>>>> parent of 5dee955 (Merge branch 'main' of https://github.com/Sidd03192/codeNext)
 
 const validateEmail = (Email) => Email.match(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+.[A-Z]{2,4}$/i);
 
@@ -120,7 +115,6 @@ const handleSignIn = async (event) => {
 
 
 
-<<<<<<< HEAD
 return (
 <div className="background-image">
       <div className=" login">
@@ -230,10 +224,13 @@ return (
               </button>
             </div>
           )}
+<<<<<<< HEAD
 =======
 >>>>>>> parent of 5dee955 (Merge branch 'main' of https://github.com/Sidd03192/codeNext)
 =======
 >>>>>>> parent of f8bce09 (Merge branch 'main' of https://github.com/Sidd03192/codeNext)
+=======
+>>>>>>> parent of 27c198b (Update auth.js)
 
 
 
