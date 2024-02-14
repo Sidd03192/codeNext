@@ -7,8 +7,6 @@ import { useState, useEffect } from "react";
 import {Input} from "@nextui-org/react";
 import {MailIcon} from './components/MailIcon';
 import React from 'react'
-<<<<<<< HEAD
-<<<<<<< HEAD
 import {EyeFilledIcon} from "./components/EyeFilledIcon";
 import {EyeSlashFilledIcon} from "./components/EyeSlashFilledIcon";
 
@@ -16,17 +14,11 @@ import {  onAuthStateChanged,signInWithEmailAndPassword,createUserWithEmailAndPa
 import { auth, provider } from "../firebase/firebase";
 import Cookies from "universal-cookie";
 import { getAuth } from "firebase/auth";
-=======
-import { useState } from 'react';
-import {signInWithPopup } from 'firebase'
-const Auth =()=>{
->>>>>>> parent of 5dee955 (Merge branch 'main' of https://github.com/Sidd03192/codeNext)
 
 
 export const Auth =()=>{
   const cookies = new Cookies();
 const [userData, setUserData] = useState();
-<<<<<<< HEAD
 const [userName, setUserName] = useState("");
 const[userId, setUserId] = useState("");
 const [userEmail, setUserEmail] = useState("");
@@ -47,8 +39,6 @@ const handleEmailChange = (event) => {
 const handlePasswordChange = (event) => {
   setPassword(event.target.value);
 };
-=======
->>>>>>> parent of 5dee955 (Merge branch 'main' of https://github.com/Sidd03192/codeNext)
 
 const validateEmail = (Email) => Email.match(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+.[A-Z]{2,4}$/i);
 
@@ -57,18 +47,19 @@ const validateEmail = (Email) => Email.match(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+.[A-Z]{
 
     return validateEmail(Email) ? false : true;
   }, [Email]);
-=======
-import { useState } from 'react';
-import {signInWithPopup } from 'firebase'
-const Auth =()=>{
-
-const [userData, setUserData] = useState();
->>>>>>> parent of f8bce09 (Merge branch 'main' of https://github.com/Sidd03192/codeNext)
 
 
 
+useEffect(() => {
+  const unsubscribe = onAuthStateChanged(auth, (authUser) => {
+    setUser(authUser);
+    
+    if ( user!=null)
+    {
+      cookies.set("auth-token", user.refreshToken); //navigate("./dash");
+    }
+  });
 
-<<<<<<< HEAD
   return () => unsubscribe();
 }, []);
 
@@ -115,7 +106,6 @@ const handleSignIn = async (event) => {
 
 
 
-<<<<<<< HEAD
 return (
 <div className="background-image">
       <div className=" login">
@@ -225,10 +215,6 @@ return (
               </button>
             </div>
           )}
-=======
->>>>>>> parent of 5dee955 (Merge branch 'main' of https://github.com/Sidd03192/codeNext)
-=======
->>>>>>> parent of f8bce09 (Merge branch 'main' of https://github.com/Sidd03192/codeNext)
 
 
 
